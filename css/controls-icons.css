@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'controls-icons';
+  src:  url('../fonts/controls-icons.eot?199ghl');
+  src:  url('../fonts/controls-icons.eot?199ghl#iefix') format('embedded-opentype'),
+    url('../fonts/controls-icons.ttf?199ghl') format('truetype'),
+    url('../fonts/controls-icons.woff?199ghl') format('woff'),
+    url('../fonts/controls-icons.svg?199ghl#controls-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"]::before, [class*=" icon-"]::before {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'controls-icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-controls-paw:before {
+  content: "\e902";
+}
+.icon-controls-left:before {
+  content: "\e901";
+}
+.icon-controls-right:before {
+  content: "\e900";
+}
+.icon-lock:before {
+  content: "\e903";
+}

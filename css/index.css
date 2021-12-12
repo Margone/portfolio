@@ -1,0 +1,619 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul, li, ol {
+  list-style-type: none;
+}
+
+p, h1, h2, h3, span, div {
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+}
+
+a {
+	-webkit-text-decoration-line: none;
+	text-decoration-line: none;
+	text-decoration: none;
+}
+
+html {
+	height: 100%;
+	overflow-x: hidden;
+	margin-right: calc(-1 * (100vw - 100%));
+}
+
+body {
+	height: 100%;
+}
+
+.wrapper {
+	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	overflow: hidden;
+	height: 100%;
+	/* 100vh */
+}
+
+.about-transition-bar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 0;
+	z-index: 5;
+}
+
+.tooltips {
+	position: absolute;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	z-index: 4;
+	opacity: 1;
+}
+
+.tooltips p {
+	cursor: default;
+	font-size: 45px;
+	font-family: "AmaticSCB";
+	color: black;
+	opacity: 0;
+	-webkit-filter: blur(20px);
+	        filter: blur(20px);
+	-webkit-transition: opacity 1s, -webkit-filter 1s;
+	transition: opacity 1s, -webkit-filter 1s;
+	-o-transition: opacity 1s, filter 1s;
+	transition: opacity 1s, filter 1s;
+	transition: opacity 1s, filter 1s, -webkit-filter 1s;
+}
+
+@media (max-width: 425px) {
+	.tooltips p {
+		font-size: 35px;
+	}
+}
+
+.content {
+	padding: 0px 28px 0px 28px;
+	max-width: 1174px;
+	margin: 0 auto;
+}
+
+.touch-row {
+	display: none;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	position: absolute;
+	bottom: 20px;
+	z-index: 10;
+	-ms-touch-action: none;
+	    touch-action: none;
+}
+
+.touch-row._active {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.content-choice {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	height: 100%;
+	width: 100%;
+	opacity: 1;
+	-webkit-transition: opacity 1s;
+	-o-transition: opacity 1s;
+	transition: opacity 1s;
+}
+
+.loading-spinner {
+	display: none;
+	position: absolute;
+	bottom: 10%;
+	left: calc(50% - 25px);
+	width: 50px;
+	height: 50px;
+	z-index: 1;
+	-webkit-animation: loadingSpinner 1s normal infinite;
+	        animation: loadingSpinner 1s normal infinite;
+}
+
+.loading-spinner._active {
+	display: block;
+}
+
+@-webkit-keyframes loadingSpinner {
+	to {
+		-webkit-transform: rotate(360deg);
+		        transform: rotate(360deg);
+	}
+}
+
+@keyframes loadingSpinner {
+	to {
+		-webkit-transform: rotate(360deg);
+		        transform: rotate(360deg);
+	}
+}
+
+.about {
+	cursor: pointer;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	width: 100%;
+	height: 100%;
+	-webkit-transition: width 1s;
+	-o-transition: width 1s;
+	transition: width 1s;
+	position: relative;
+	z-index: 3;
+}
+
+.about-progress {
+	height: 100%;
+	position: absolute;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	opacity: 0;
+	bottom: 1px;
+	-webkit-transition: opacity 1s;
+	-o-transition: opacity 1s;
+	transition: opacity 1s;
+	width: 100%;
+	z-index: 3;
+}
+
+.about-progress_bar {
+	position: absolute;
+	background: black;
+	width: 100%;
+	height: 5px;
+	bottom: -1px;
+	-webkit-transition: 1s;
+	-o-transition: 1s;
+	transition: 1s;
+}
+
+.about-progress_bar div {
+	background: #8a1ea4;
+	width: 0;
+	-webkit-box-shadow: 0 10px 40px 10px #cc00ff;
+	        box-shadow: 0 10px 40px 10px #cc00ff;
+	height: 100%;
+	-webkit-transition: width 0.25s;
+	-o-transition: width 0.25s;
+	transition: width 0.25s;
+}
+
+.about-p1 {
+	position: absolute;
+	z-index: 2;
+	opacity: 1;
+	-webkit-transition: opacity 1s;
+	-o-transition: opacity 1s;
+	transition: opacity 1s;	
+}
+
+.about-p1 p {
+	cursor: default;
+	text-shadow: 1px 1px 0px white;
+	color: white;
+	opacity: 1;
+	-webkit-transition: opacity 1s;
+	-o-transition: opacity 1s;
+	transition: opacity 1s;	
+	font-family: "AcreR";
+	font-size: 100px;
+	-webkit-transition: text-shadow 0.5s;
+	-o-transition: text-shadow 0.5s;
+	transition: text-shadow 0.5s;
+}
+
+@media (max-width: 1024px) {
+	.about-p1 p {
+		font-size: 75px;
+	}
+}
+
+@media (max-width: 768px) {
+	.about-p1 p {
+		font-size: 50px;
+	}
+}
+
+@media (max-width: 425px) {
+	.about-p1 p {
+		font-size: 35px;
+	}
+}
+
+@media (max-width: 320px) {
+	.about-p1 p {
+		font-size: 25px;
+	}
+}
+
+.about-hover:hover .about-p1 p{
+	text-shadow: 1px 1px 10px white;
+}
+
+.about-background {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: black;
+	opacity: 1;
+	-webkit-transition: opacity 1s;
+	-o-transition: opacity 1s;
+	transition: opacity 1s;
+	z-index: 1;	
+}
+
+.about-background img {
+	-webkit-transition: -webkit-transform 1s;
+	transition: -webkit-transform 1s;
+	-o-transition: transform 1s;
+	transition: transform 1s;
+	transition: transform 1s, -webkit-transform 1s;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	-o-object-fit: cover;
+	   object-fit: cover;
+	top: 0;
+	left: 0;
+}
+
+.game {
+	z-index: 4;
+	cursor: pointer;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	width: 100%;
+	height: 100%;
+	-webkit-transition: width 1s;
+	-o-transition: width 1s;
+	transition: width 1s;
+	position: relative;
+}
+
+.game-progress {
+	z-index: 3;
+	height: 100%;
+	position: absolute;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	opacity: 0;
+	bottom: 1px;
+	-webkit-transition: opacity 1s;
+	-o-transition: opacity 1s;
+	transition: opacity 1s;
+	width: 100%;
+}
+
+.game-progress_bar {
+	position: absolute;
+	background: black;
+	width: 100%;
+	height: 5px;
+	bottom: -1px;
+	opacity: 1;
+	-webkit-transition: 1s;
+	-o-transition: 1s;
+	transition: 1s;
+}
+
+.game-progress_bar div {
+	background: #adccff;
+	width: 0;
+	-webkit-box-shadow: 0 10px 40px 10px #adccff;
+	        box-shadow: 0 10px 40px 10px #adccff;
+	height: 100%;
+	-webkit-transition: width 0.1s;
+	-o-transition: width 0.1s;
+	transition: width 0.1s;
+}
+
+.game-progress_p {
+	bottom: 50%;
+	position: absolute;
+	opacity: 0;
+	-webkit-transition: opacity 1s;
+	-o-transition: opacity 1s;
+	transition: opacity 1s;
+	-webkit-animation: animOpacity 2s ease-in-out infinite;
+	        animation: animOpacity 2s ease-in-out infinite;
+}
+
+@-webkit-keyframes animOpacity {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+
+}
+
+@keyframes animOpacity {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+
+}
+
+.game-progress_p p {
+	cursor: default;
+	text-shadow: 1px 1px 10px white;
+	color: black;
+	font-family: "AmaticSCB";
+	font-size: 60px;
+}
+
+.game-p1 {
+	position: absolute;
+	z-index: 2;
+	opacity: 1;
+	-webkit-transition: opacity 1s;
+	-o-transition: opacity 1s;
+	transition: opacity 1s;
+}
+
+.game-p1 p {
+	cursor: default;
+	text-shadow: 1px 1px 0px black;
+	color: black;
+	font-family: "AmaticSCB";
+	font-size: 100px;
+	-webkit-transition: text-shadow 0.5s;
+	-o-transition: text-shadow 0.5s;
+	transition: text-shadow 0.5s;
+}
+
+@media (max-width: 1024px) {
+	.game-p1 p {
+		font-size: 75px;
+	}
+}
+
+@media (max-width: 768px) {
+	.game-p1 p {
+		font-size: 50px;
+	}
+}
+
+@media (max-width: 425px) {
+	.game-p1 p {
+		font-size: 35px;
+	}
+}
+
+@media (max-width: 320px) {
+	.game-p1 p {
+		font-size: 25px;
+	}
+}
+
+.game-hover:hover .game-p1 p{
+	text-shadow: 1px 1px 10px black;
+}
+
+.game-background {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.game-background div {
+	width: 100%;
+	height: 100%;
+	background: white;
+	opacity: 1;
+	-webkit-transition: opacity 1s;
+	-o-transition: opacity 1s;
+	transition: opacity 1s;
+	z-index: 10;
+}
+
+.game-background img {
+	z-index: -1;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	-o-object-fit: cover;
+	   object-fit: cover;
+	top: 0;
+	left: 0;
+}
+
+.container3dAbout canvas {
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 3;
+}
+
+.container3d canvas {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 5;
+	-ms-touch-action: none;
+	    touch-action: none;
+}
+
+.icon-controls-up {
+	-webkit-transition: opacity 0.5s, -webkit-filter 0.5s;
+	transition: opacity 0.5s, -webkit-filter 0.5s;
+	-o-transition: filter 0.5s, opacity 0.5s;
+	transition: filter 0.5s, opacity 0.5s;
+	transition: filter 0.5s, opacity 0.5s, -webkit-filter 0.5s;
+	overflow: visible;
+	left: 30%;
+	font-size: 35px;
+	top: -40px;
+	position: absolute;
+	opacity: 0.5;
+}
+
+.icon-controls-up img {
+	width: 35px;
+	height: 35px;
+}
+
+.icon-controls-left {
+	-webkit-transition: opacity 0.5s, -webkit-filter 0.5s;
+	transition: opacity 0.5s, -webkit-filter 0.5s;
+	-o-transition: filter 0.5s, opacity 0.5s;
+	transition: filter 0.5s, opacity 0.5s;
+	transition: filter 0.5s, opacity 0.5s, -webkit-filter 0.5s;
+	overflow: visible;
+	left: -40px;
+	font-size: 35px;
+	top: 30%;
+	position: absolute;
+	opacity: 0.5;
+}
+
+.icon-controls-right {
+	-webkit-transition: opacity 0.5s, -webkit-filter 0.5s;
+	transition: opacity 0.5s, -webkit-filter 0.5s;
+	-o-transition: filter 0.5s, opacity 0.5s;
+	transition: filter 0.5s, opacity 0.5s;
+	transition: filter 0.5s, opacity 0.5s, -webkit-filter 0.5s;
+	overflow: visible;
+	right: -40px;
+	font-size: 35px;
+	top: 30%;
+	position: absolute;
+	opacity: 0.5;
+}
+
+.touch-row_handle {
+	top: 35px;
+	left: 40px;
+	position: absolute;
+	color: black;
+	-webkit-transition: color 0.5s;
+	-o-transition: color 0.5s;
+	transition: color 0.5s;
+}
+
+.icon-controls-paw::before {
+	display: inline-block;
+	font-size: 24px;
+}
+
+@font-face {
+    font-family: 'OctoberCrow';
+    src: url('../fonts/OctoberCrow.eot');
+    src: url('../fonts/OctoberCrow.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/OctoberCrow.woff2') format('woff2'),
+        url('../fonts/OctoberCrow.woff') format('woff'),
+        url('../fonts/OctoberCrow.ttf') format('truetype'),
+        url('../fonts/OctoberCrow.svg#OctoberCrow') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AmaticSCR';
+    src: url('../fonts/AmaticSC-Regular.eot');
+    src: url('../fonts/AmaticSC-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/AmaticSC-Regular.woff2') format('woff2'),
+        url('../fonts/AmaticSC-Regular.woff') format('woff'),
+        url('../fonts/AmaticSC-Regular.ttf') format('truetype'),
+        url('../fonts/AmaticSC-Regular.svg#AmaticSC-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AmaticSCB';
+    src: url('../fonts/AmaticSC-Bold.eot');
+    src: url('../fonts/AmaticSC-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/AmaticSC-Bold.woff2') format('woff2'),
+        url('../fonts/AmaticSC-Bold.woff') format('woff'),
+        url('../fonts/AmaticSC-Bold.ttf') format('truetype'),
+        url('../fonts/AmaticSC-Bold.svg#AmaticSC-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+	font-family: 'AcreR';
+	src: url('../fonts/Acre-Regular.eot');
+	src: local('☺'),
+		url('../fonts/Acre-Regular.woff') format('woff'),
+		url('../fonts/Acre-Regular.ttf') format('truetype'),
+		url('../fonts/Acre-Regular.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
